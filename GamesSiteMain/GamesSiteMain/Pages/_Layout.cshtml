@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - GamesSiteMain</title>
+    <title>IDidGame @ViewData["Title"]</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -26,13 +26,36 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/Index" class="navbar-brand">GamesSiteMain</a>
+
+                @if (ViewData["Title"].ToString() == "Home")
+                {
+                    <a style="color:white;" asp-page="/Index" class="navbar-brand">IDidGame</a>}
+                else
+                {
+                    <a asp-page="/Index" class="navbar-brand">IDidGame</a>}
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
+                    @if (ViewData["Title"].ToString() == "Games")
+                    {
+                        <li><a style="color:white" asp-page="/Games/Games">Games</a></li>}
+                    else
+                    {
+                        <li><a asp-page="/Games/Games">Games</a></li>}
+
+                    @if (ViewData["Title"].ToString() == "Posts")
+                    {
+                        <li><a style="color:white" asp-page="/Posts/Posts">Posts</a></li>}
+                    else
+                    {
+                        <li><a asp-page="/Posts/Posts">Posts</a></li>}
+
+                    @if (ViewData["Title"].ToString() == "About")
+                    {
+                        <li><a style="color:white" asp-page="/About">About</a></li>}
+                    else
+                    {
+                        <li><a asp-page="/About">About</a></li>}
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -42,7 +65,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2017 - GamesSiteMain</p>
+            <p>&copy; 2018 - IDidGame</p>
         </footer>
     </div>
 

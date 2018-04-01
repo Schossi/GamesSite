@@ -10,26 +10,20 @@ body {
     padding-right: 15px;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
+.taggedList {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "content tags";
+    grid-gap: 50px;
 }
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
+.taggedListTags {
+    grid-area: tags;
 }
 
-/* QR code generator */
-#qrCode {
-    margin: 15px;
+.taggedListEntry {
+    grid-area: content;
 }
+.listEntry {
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
 }

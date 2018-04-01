@@ -10,6 +10,6 @@ namespace GamesSiteMain.Data
         public int PostTagId { get; set; }
         public string Tag { get; set; }
         public int PostId { get; set; }
-        public Post Post { get; set; }
+        public virtual Post Post { get; set; }
     }
 }

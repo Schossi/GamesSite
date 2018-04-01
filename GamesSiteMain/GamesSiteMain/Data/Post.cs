@@ -11,9 +11,15 @@ namespace GamesSiteMain.Data
         public string Title { get; set; }
         public string Body { get; set; }
         public DateTime PublishDate { get; set; }
-
+        
         public virtual ICollection<PostTag> Tags { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public Post()
+        {
+            Tags = new List<PostTag>();
+            Comments = new List<Comment>();
+        }
     }
 }

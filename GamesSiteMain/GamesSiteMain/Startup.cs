@@ -58,6 +58,8 @@ namespace GamesSiteMain
             services.AddSingleton<IEmailSender, EmailSender>();
 
             services.AddTransient<IDBSeeder, DBSeeder>();
+            services.AddTransient<GamesService>();
+            services.AddTransient<PostsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

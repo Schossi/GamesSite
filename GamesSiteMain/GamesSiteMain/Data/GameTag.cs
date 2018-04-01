@@ -10,6 +10,16 @@ namespace GamesSiteMain.Data
         public int GameTagId { get; set; }
         public string Tag { get; set; }
         public int GameId { get; set; }
-        public Game Game { get; set; }
+        public virtual Game Game { get; set; }
+
+        public GameTag()
+        {
+
+        }
+        public GameTag(Game game,string tag)
+        {
+            Game = game;
+            Tag = tag;
+        }
     }
 }
