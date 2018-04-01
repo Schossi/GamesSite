@@ -11,6 +11,12 @@ namespace GamesSiteMain.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Game> Games { get; set; }
+        public DbSet<GameTag> GameTags { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<PostTag> PostTags { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
