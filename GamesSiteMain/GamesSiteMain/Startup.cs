@@ -16,22 +16,35 @@ namespace GamesSiteMain
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
-
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(io=>
+            {
+                io.Password.RequireUppercase = false;
+                io.Password.RequireLowercase = false;
+                io.Password.RequireNonAlphanumeric = false;
+                io.Password.RequireDigit = false;
+                io.Password.RequiredLength = 5;
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddAuthentication().AddTwitter(to =>
+            {
+                to.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+                to.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+            });
 
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
@@ -43,6 +56,8 @@ namespace GamesSiteMain
             // Register no-op EmailSender used by account confirmation and password reset during development
             // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
             services.AddSingleton<IEmailSender, EmailSender>();
+
+            services.AddTransient<IDBSeeder, DBSeeder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
