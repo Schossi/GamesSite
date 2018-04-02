@@ -60,6 +60,7 @@ namespace GamesSiteMain
             services.AddTransient<IDBSeeder, DBSeeder>();
             services.AddTransient<GamesService>();
             services.AddTransient<PostsService>();
+            services.AddTransient<CommentsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

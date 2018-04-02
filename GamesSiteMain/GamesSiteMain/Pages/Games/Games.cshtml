@@ -35,7 +35,14 @@
                     <h1>@game.Name</h1>
                     <p>@game.Description</p>
                     <small>@game.PublishDate</small><br />
-                    <small>@game.TagsText</small>
+                    <small>@game.TagsText</small><br />
+
+                    <a asp-page="./GameDetails" asp-route-id="@game.Id"> Details </a>
+                    @if (User?.IsInRole("Admin") == true)
+                    {                        
+                        <a asp-page="./EditGame" asp-route-id="@game.Id">Edit</a>
+                        <a asp-page="./DeleteGame" asp-route-id="@game.Id">Delete</a>
+                    }
                 </arcticle>
             }
         }

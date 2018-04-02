@@ -1,0 +1,22 @@
+﻿@*@page
+@model GamesSiteMain.Pages.ICommentsPage*@
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+<form method="post">
+    <input asp-for="NewCommentText" class="form-control" />
+    <span asp-validation-for="NewCommentText" class="text-danger"></span>
+
+    <button type="submit" class="btn btn-default">Comment</button>
+</form>
+}
+
+@foreach (var comment in Model.Comments)
+{
+    <h4>@comment.User.UserName</h4>
+    <small>@comment.PublishDate</small>
+    <p>@comment.Text</p>
+}

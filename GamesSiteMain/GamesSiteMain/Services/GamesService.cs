@@ -20,19 +20,19 @@ namespace GamesSiteMain.Services
         {
             if (id.HasValue)
             {
-                return new EditGame(_dbContext.Games.Where(g => g.Id == id.Value).First());
+                return new EditGame(_dbContext.Games.Where(g => g.Id == id.Value).Include(g => g.Tags).First());
             }
             else
             {
                 return new EditGame();
             }
         }
-        public bool SaveGame(EditGame editGame)
+        public bool SaveGame(EditGame editGame, int? id)
         {
             Game game = null;
-            if (editGame.Id >= 0)
+            if (id.HasValue)
             {
-                game = _dbContext.Games.FirstOrDefault(g => g.Id == editGame.Id);
+                game = _dbContext.Games.Include(g => g.Tags).FirstOrDefault(g => g.Id == id.Value);
             }
             else
             {
@@ -47,6 +47,15 @@ namespace GamesSiteMain.Services
             
             _dbContext.SaveChanges();
             return true;
+        }
+        
+        public Game GetGame(int id) => _dbContext.Games.Where(g => g.Id == id).Include(g => g.Tags).FirstOrDefault();
+
+        public void DeleteGame(int id)
+        {
+            Game game = GetGame(id);
+            _dbContext.Games.Remove(game);
+            _dbContext.SaveChanges();
         }
 
         public List<Game> GetGames() => _dbContext.Games.OrderBy(g => g.PublishDate).Include(g => g.Tags).ToList();

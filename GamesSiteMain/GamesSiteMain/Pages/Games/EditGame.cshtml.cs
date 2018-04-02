@@ -30,12 +30,12 @@ namespace GamesSiteMain.Pages.Games
             Game = _gamesService.GetEditGame(id);
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost([FromRoute] int? id)
         {
             if (!ModelState.IsValid)
                 return Page();
-
-            _gamesService.SaveGame(Game);
+            
+            _gamesService.SaveGame(Game, id);
 
             return RedirectToPage("./Games");
         }

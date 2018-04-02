@@ -10,7 +10,8 @@ namespace GamesSiteMain.Services
 {
     public class DBSeeder:IDBSeeder
     {
-        public const string AdminName = "Admin@IDidGame.com";
+        public const string AdminName = "Admin";
+        public const string AdminMail = "Admin@IDidGame.com";
         public const string AdminRoleName = "Admin";
 
         private IConfiguration _configuration;
@@ -38,6 +39,7 @@ namespace GamesSiteMain.Services
                 adminUser = new ApplicationUser()
                 {
                     UserName = AdminName,
+                    Email = AdminMail
                 };
 
                 await _userManager.CreateAsync(adminUser, _configuration["AdminPassword"]);
