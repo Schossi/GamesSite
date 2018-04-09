@@ -1,12 +1,12 @@
 ﻿@page "{id:int}"
-@model GamesSiteMain.Pages.Games.GameDetailsModel
+@model GameDetailsModel
 @{
     ViewData["Title"] = Model.Game.Name;
 }
 
 <article>
-    <h2>@ViewData["Title"]</h2>
+    <h2>@Model.Game.Name</h2>
     <p>@Model.Game.Description</p>
 </article>
 
-@Html.Partial("../CommentsPartial")
+@Html.Partial("../CommentsPartial",Model)

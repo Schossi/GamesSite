@@ -1,5 +1,5 @@
 ﻿@page "{id:int?}"
-@model GamesSiteMain.Pages.Games.EditGameModel
+@model EditGameModel
 @{
     if (Model.IsNew)
     {
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Game.Description"></label>
-                <input asp-for="Game.Description" class="form-control" />
+                <textarea class="form-control" name="Game.Description" ></textarea>
                 <span asp-validation-for="Game.Description" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -11,28 +11,28 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using GamesSiteMain.Pages.BasePageModels;
 
-namespace GamesSiteMain.Pages.Games
+namespace GamesSiteMain.Pages.Posts
 {
-    public class GameDetailsModel : CommentsPageBase
+    public class PostDetailsModel : CommentsPageBase
     {
         [BindProperty]
-        public Game Game { get; set; }
+        public Post Post { get; set; }
 
-        public override PageArea Area => PageArea.Games;
+        public override PageArea Area => PageArea.Posts;
 
-        private GamesService _gamesService;
+        private PostsService _postsService;
 
-        public GameDetailsModel(GamesService gamesService, CommentsService commentsService, UserManager<ApplicationUser> userManager)
+        public PostDetailsModel(PostsService postsService, CommentsService commentsService, UserManager<ApplicationUser> userManager)
             : base(commentsService, userManager)
         {
-            _gamesService = gamesService;
+            _postsService = postsService;
         }
 
         public override void OnGet(int id)
         {
             base.OnGet(id);
 
-            Game = _gamesService.GetGame(id);
+            Post = _postsService.GetPost(id);
         }
     }
 }

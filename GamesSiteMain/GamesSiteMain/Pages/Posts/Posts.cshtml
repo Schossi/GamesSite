@@ -1,7 +1,44 @@
-﻿@page
-@model GamesSiteMain.Pages.Posts.PostsModel
+﻿@page "tags:string"
+@model PostsModel
 @{
     ViewData["Title"] = "Posts";
 }
 
 <h2>@ViewData["Title"]</h2>
+
+@if (User?.IsInRole("Admin") == true)
+{
+    <div><a asp-page="./EditPost">Add New Post</a></div>
+}
+
+<div class="taggedList">
+    <div class="taggedListTags">
+        @Html.Partial("../TagsPartial", Model)
+    </div>
+    <div class="taggedListEntries">
+        @if (Model.Posts.Count > 0)
+        {
+            @foreach (var post in Model.Posts)
+            {
+                <arcticle>
+                    <h1>@post.Title</h1>
+                    <p>@post.Body</p>
+                    <small>@post.PublishDate</small><br />
+                    <small>@post.TagsText</small><br />
+
+                    <a asp-page="./PostDetails" asp-route-id="@post.Id"> Details </a>
+                    @if (User?.IsInRole("Admin") == true)
+                    {
+                        <a asp-page="./EditPost" asp-route-id="@post.Id">Edit</a>
+                        <a asp-page="./DeletePost" asp-route-id="@post.Id">Delete</a>
+                    }
+                </arcticle>
+            }
+        }
+        else
+        {
+            <p>no posts yet</p>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,54 @@
+﻿@page "{id:int?}"
+@model EditPostModel
+@{
+    if (Model.IsNew)
+    {
+        ViewData["Title"] = "Add Post";
+    }
+    else
+    {
+        ViewData["Title"] = "Edit Post";
+    }
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-route="./Posts" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Post.Title"></label>
+                <input asp-for="Post.Title" class="form-control" />
+                <span asp-validation-for="Post.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Post.Body"></label>
+                <textarea class="form-control" name="Post.Body"></textarea>
+                <span asp-validation-for="Post.Body" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Post.PublishDate"></label>
+                <input asp-for="Post.PublishDate" class="form-control" />
+                <span asp-validation-for="Post.PublishDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Post.Tags"></label>
+                <input asp-for="Post.Tags" class="form-control" />
+                <span asp-validation-for="Post.Tags" class="text-danger"></span>
+            </div>
+            @if (Model.IsNew)
+            {
+                <button type="submit" class="btn btn-default">Add</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-default">Save</button>
+            }
+            <a asp-page="./posts">Back</a>
+        </form>
+    </div>
+</div>
+

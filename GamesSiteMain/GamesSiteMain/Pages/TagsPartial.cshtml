@@ -1,0 +1,14 @@
+﻿@model BasePageModels.TaggedPageBase
+
+<form method="post">
+    <h4>Tags</h4>
+
+    @foreach (var tag in Model.Tags)
+    {
+        <input id="@tag" type="hidden" asp-for="Tags[Model.Tags.IndexOf(tag)]" />
+        <input id="@tag" type="checkbox" asp-for="TagStates[Model.Tags.IndexOf(tag)]" />
+        <label for="@tag">@tag</label><br />
+    }
+
+    <button type="submit" class="btn btn-default">></button>
+</form>

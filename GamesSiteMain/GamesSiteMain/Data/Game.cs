@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,16 +42,18 @@ namespace GamesSiteMain.Data
     public class EditGame
     {
         public int Id { get; private set; }
+
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Description { get; set; }
+
         public DateTime PublishDate { get; set; }
         public string Tags { get; set; }
 
         public EditGame()
         {
             Id = -1;
-            Name = "NewGame";
-            Description = "Enter Description here!";
             PublishDate = DateTime.Now;
         }
         public EditGame(Game game)

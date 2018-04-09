@@ -3,60 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GamesSiteMain.Data;
+using GamesSiteMain.Pages.BasePageModels;
 using GamesSiteMain.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GamesSiteMain.Pages.Games
 {
-    public class GamesModel : PageModel
+    public class GamesModel : TaggedPageBase
     {
         public List<Game> Games { get; set; }
         
-        [BindProperty]
-        public List<string> Tags { get; set; }
-        [BindProperty]
-        public List<bool> TagStates { get; set; }
-
-        [TempData]
-        public string SelectedTags { get; set; }
-
         private GamesService _gamesService;
 
-        public GamesModel(GamesService gamesService)
+        public GamesModel(GamesService gamesService):base()
         {
             _gamesService = gamesService;
         }
-
-        public void OnGet()
+        
+        protected override List<string> getTags()
         {
-            Tags = _gamesService.GetTags();
-
-            if (SelectedTags == null)
-                SelectedTags = string.Empty;
-            string[] splitSelectedTags = SelectedTags.Split('|', StringSplitOptions.RemoveEmptyEntries);
-
-            TagStates = Tags.Select(t => splitSelectedTags.Contains(t)).ToList();
-
-            if (splitSelectedTags.Length == 0)
-                Games = _gamesService.GetGames();
-            else
-                Games = _gamesService.GetGames(splitSelectedTags.ToList());
+            return _gamesService.GetTags();
         }
 
-        public IActionResult OnPost()
+        protected override void fillEntries(List<string> tags)
         {
-            List<string> tags = new List<string>();
-
-            for (int i = 0; i < Tags.Count; i++)
-            {
-                if (TagStates[i])
-                    tags.Add(Tags[i]);
-            }
-
-            SelectedTags = string.Join('|', tags);
-
-            return RedirectToPage();
+            if (tags.Count == 0)
+                Games = _gamesService.GetGames();
+            else
+                Games = _gamesService.GetGames(tags);
         }
     }
 }

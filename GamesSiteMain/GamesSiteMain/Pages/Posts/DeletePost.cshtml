@@ -1,0 +1,14 @@
+﻿@page "{id:int}"
+@model DeletePostModel
+@{
+    ViewData["Title"] = "Delete Post";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h3>Are you sure you want to delete @Model.Post.Title ?</h3>
+
+<form method="post">
+    <button type="submit" class="btn btn-default">Delete</button>
+    <a asp-page="./posts">Back</a>
+</form>
+

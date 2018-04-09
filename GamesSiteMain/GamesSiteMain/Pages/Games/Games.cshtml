@@ -1,5 +1,5 @@
 ﻿@page "tags:string"
-@model GamesSiteMain.Pages.Games.GamesModel
+@model GamesModel
 @{
     ViewData["Title"] = "Games";
 }
@@ -13,18 +13,7 @@
 
 <div class="taggedList">
     <div class="taggedListTags">
-        <form method="post">
-            <h4>Tags</h4>
-
-            @foreach (var tag in Model.Tags)
-            {
-                <input id="@tag" type="hidden" asp-for="Tags[Model.Tags.IndexOf(tag)]" />
-                <input id="@tag" type="checkbox" asp-for="TagStates[Model.Tags.IndexOf(tag)]" />
-                <label for="@tag">@tag</label><br />
-            }
-
-            <button type="submit" class="btn btn-default">></button>
-        </form>
+        @Html.Partial("../TagsPartial", Model)
     </div>
     <div class="taggedListEntries">
         @if (Model.Games.Count > 0)
@@ -48,7 +37,7 @@
         }
         else
         {
-            <p>No games found</p>
+            <p>no games yet</p>
         }
     </div>
 </div>
