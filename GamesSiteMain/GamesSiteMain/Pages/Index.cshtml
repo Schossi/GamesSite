@@ -1,7 +1,20 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "IDidGame";
 }
 
+<h2>Welcome</h2>
 
+<hr />
+
+<div class="titleGrid">
+    <div class="titleGame">
+        <h3>Latest Game</h3>
+        @Html.Partial("Games/GamePartial", Model.Game)
+    </div>
+    <div class="titlePost">
+        <h3>Latest Post</h3>
+        @Html.Partial("Posts/PostPartial", Model.Post)
+    </div>
+</div>

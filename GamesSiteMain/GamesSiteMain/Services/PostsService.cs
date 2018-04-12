@@ -58,6 +58,8 @@ namespace GamesSiteMain.Services
             _dbContext.SaveChanges();
         }
 
+        public Post GetLatestPost() => _dbContext.Posts.OrderBy(g => g.PublishDate).FirstOrDefault();
+
         public List<Post> GetPosts() => _dbContext.Posts.OrderBy(g => g.PublishDate).Include(g => g.Tags).ToList();
         public List<Post> GetPosts(List<string> tags)
         {

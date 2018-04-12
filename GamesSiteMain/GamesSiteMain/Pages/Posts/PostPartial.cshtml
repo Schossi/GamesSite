@@ -1,0 +1,15 @@
+﻿@model Post
+
+<arcticle>
+    <h1>@Model.Title</h1>
+    <p>@Model.Body</p>
+    <small>@Model.PublishDate</small><br />
+    <small>@Model.TagsText</small><br />
+
+    <a asp-page="./PostDetails" asp-route-id="@Model.Id"> Details </a>
+    @if (User?.IsInRole("Admin") == true)
+    {
+        <a asp-page="./EditPost" asp-route-id="@Model.Id">Edit</a>
+        <a asp-page="./DeletePost" asp-route-id="@Model.Id">Delete</a>
+    }
+</arcticle>

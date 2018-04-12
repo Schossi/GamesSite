@@ -27,3 +27,17 @@ body {
 .listEntry {
 
 }
+
+.titleGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "game post";
+    grid-gap: 50px;
+}
+
+.titleGame{
+    grid-area: game;
+}
+.titlePost{
+    grid-area: post;
+}

@@ -13,41 +13,41 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-route="./Games" method="post">
-            <h4>Create a new account.</h4>
-            <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Game.Name"></label>
-                <input asp-for="Game.Name" class="form-control" />
-                <span asp-validation-for="Game.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Game.Description"></label>
-                <textarea class="form-control" name="Game.Description" ></textarea>
-                <span asp-validation-for="Game.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Game.PublishDate"></label>
-                <input asp-for="Game.PublishDate" class="form-control" />
-                <span asp-validation-for="Game.PublishDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Game.Tags"></label>
-                <input asp-for="Game.Tags" class="form-control" />
-                <span asp-validation-for="Game.Tags" class="text-danger"></span>
-            </div>
-            @if (Model.IsNew)
-            {
-                <button type="submit" class="btn btn-default">Add</button>
-            }
-            else
-            {
-                <button type="submit" class="btn btn-default">Save</button>
-            }
-        </form>
-    </div>
+<div>
+    <form asp-route="./Games" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Game.Name"></label>
+            <input asp-for="Game.Name" class="form-control" />
+            <span asp-validation-for="Game.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Game.Description"></label>
+            @Html.TextAreaFor(m => m.Game.Description)
+            <span asp-validation-for="Game.Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Game.PublishDate"></label>
+            <input asp-for="Game.PublishDate" class="form-control" />
+            <span asp-validation-for="Game.PublishDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Game.Tags"></label>
+            <input asp-for="Game.Tags" class="form-control" />
+            <span asp-validation-for="Game.Tags" class="text-danger"></span>
+        </div>
+        @if (Model.IsNew)
+        {
+            <button type="submit" class="btn btn-default">Add</button>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-default">Save</button>
+        }
+    </form>
 </div>
 
+@section Scripts
+    {
+    <script type="text/javascript" src="../../js/InitTinyMCE.js"></script>
+}

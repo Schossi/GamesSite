@@ -45,6 +45,8 @@ namespace GamesSiteMain.Data
 
         [Required]
         public string Name { get; set; }
+        [DataType(DataType.Html)]
+        [UIHint("tinymce_full_compressed")]
         [Required]
         public string Description { get; set; }
 

@@ -11,6 +11,8 @@
     <div><a asp-page="./EditPost">Add New Post</a></div>
 }
 
+<hr />
+
 <div class="taggedList">
     <div class="taggedListTags">
         @Html.Partial("../TagsPartial", Model)
@@ -20,19 +22,7 @@
         {
             @foreach (var post in Model.Posts)
             {
-                <arcticle>
-                    <h1>@post.Title</h1>
-                    <p>@post.Body</p>
-                    <small>@post.PublishDate</small><br />
-                    <small>@post.TagsText</small><br />
-
-                    <a asp-page="./PostDetails" asp-route-id="@post.Id"> Details </a>
-                    @if (User?.IsInRole("Admin") == true)
-                    {
-                        <a asp-page="./EditPost" asp-route-id="@post.Id">Edit</a>
-                        <a asp-page="./DeletePost" asp-route-id="@post.Id">Delete</a>
-                    }
-                </arcticle>
+                @Html.Partial("PostPartial", post);
             }
         }
         else

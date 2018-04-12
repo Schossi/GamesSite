@@ -11,6 +11,8 @@
     <div><a asp-page="./EditGame">Add New Game</a></div>
 }
 
+<hr />
+
 <div class="taggedList">
     <div class="taggedListTags">
         @Html.Partial("../TagsPartial", Model)
@@ -20,19 +22,7 @@
         {
             @foreach (var game in Model.Games)
             {
-                <arcticle>
-                    <h1>@game.Name</h1>
-                    <p>@game.Description</p>
-                    <small>@game.PublishDate</small><br />
-                    <small>@game.TagsText</small><br />
-
-                    <a asp-page="./GameDetails" asp-route-id="@game.Id"> Details </a>
-                    @if (User?.IsInRole("Admin") == true)
-                    {                        
-                        <a asp-page="./EditGame" asp-route-id="@game.Id">Edit</a>
-                        <a asp-page="./DeleteGame" asp-route-id="@game.Id">Delete</a>
-                    }
-                </arcticle>
+                @Html.Partial("GamePartial", game);
             }
         }
         else
