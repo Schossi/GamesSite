@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GamesSiteMain.Pages.BasePageModels
 {
-    public abstract class CommentsPageBase : PageModel
+    public abstract class CommentsPageBase : PageModelBase
     {
         [BindProperty]
         public Comment NewComment { get; set; } = new Comment();

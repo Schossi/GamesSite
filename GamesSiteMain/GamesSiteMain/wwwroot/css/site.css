@@ -28,16 +28,30 @@ body {
 
 }
 
-.titleGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "game post";
-    grid-gap: 50px;
+@media (min-width: 100px) {
+    .titleGrid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: "game" "post" "twitter";
+        grid-gap: 50px;
+    }
 }
+@media (min-width: 500px) {
+    .titleGrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "game twitter" "post twitter";
+        grid-gap: 50px;
+    }
+}
+
 
 .titleGame{
     grid-area: game;
 }
 .titlePost{
     grid-area: post;
+}
+.titleTwitter {
+    grid-area: twitter;
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GamesSiteMain.Pages.BasePageModels
 {
-    public abstract class TaggedPageBase:PageModel
+    public abstract class TaggedPageBase: PageModelBase
     {
         [BindProperty]
         public List<string> Tags { get; set; }

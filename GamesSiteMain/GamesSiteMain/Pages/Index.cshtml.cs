@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GamesSiteMain.Data;
+using GamesSiteMain.Pages.BasePageModels;
 using GamesSiteMain.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GamesSiteMain.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexModel : PageModelBase
     {
         private GamesService _gamesService;
         private PostsService _postsService;
