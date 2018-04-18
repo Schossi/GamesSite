@@ -32,6 +32,8 @@ namespace GamesSiteMain.Pages.Posts
                 Posts = _postsService.GetPosts();
             else
                 Posts = _postsService.GetPosts(tags);
+
+            Posts.ForEach(p => p.ShortenBody());
         }
     }
 }

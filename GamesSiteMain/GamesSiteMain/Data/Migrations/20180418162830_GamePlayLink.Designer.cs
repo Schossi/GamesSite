@@ -11,9 +11,10 @@ using System;
 namespace GamesSiteMain.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180418162830_GamePlayLink")]
+    partial class GamePlayLink
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,8 +107,6 @@ namespace GamesSiteMain.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
-
-                    b.Property<byte[]>("Image");
 
                     b.Property<string>("Name");
 

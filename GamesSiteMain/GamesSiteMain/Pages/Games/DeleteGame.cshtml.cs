@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GamesSiteMain.Data;
 using GamesSiteMain.Pages.BasePageModels;
 using GamesSiteMain.Services;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -12,12 +14,14 @@ namespace GamesSiteMain.Pages.Games
 {
     public class DeleteGameModel : PageModelBase
     {
-        public Game Game { get; set; }
-
+        private IHostingEnvironment _hostingEnvironment;
         private GamesService _gamesService;
 
-        public DeleteGameModel(GamesService gamesService)
+        public Game Game { get; set; }
+
+        public DeleteGameModel(IHostingEnvironment hostingEnvironment,GamesService gamesService)
         {
+            _hostingEnvironment = hostingEnvironment;
             _gamesService = gamesService;
         }
 
@@ -29,6 +33,9 @@ namespace GamesSiteMain.Pages.Games
         public IActionResult OnPost([FromRoute] int id)
         {
             _gamesService.DeleteGame(id);
+
+            var path = Path.Combine(_hostingEnvironment.WebRootPath, "games", id + ".png");
+            System.IO.File.Delete(path);
 
             return RedirectToPage("./Games");
         }

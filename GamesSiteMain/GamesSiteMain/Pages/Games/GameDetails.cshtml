@@ -6,7 +6,7 @@
 
 <article>
     <h2>@Model.Game.Name</h2>
-    <p>@Model.Game.Description</p>
+    <p>@Html.Raw(Model.Game.Description)</p>
 </article>
 
 @Html.Partial("../CommentsPartial",Model)

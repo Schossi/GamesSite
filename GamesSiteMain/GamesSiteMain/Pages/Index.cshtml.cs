@@ -17,8 +17,8 @@ namespace GamesSiteMain.Pages
 
         public Game Game { get; set; }
         public Post Post { get; set; }
-        
-        public IndexModel(GamesService gamesService,PostsService postsService)
+
+        public IndexModel(GamesService gamesService, PostsService postsService)
         {
             _gamesService = gamesService;
             _postsService = postsService;
@@ -27,7 +27,11 @@ namespace GamesSiteMain.Pages
         public void OnGet()
         {
             Game = _gamesService.GetLatestGame();
+            Game.ImagePath = $"../games/{Game.Id}.png";
             Post = _postsService.GetLatestPost();
+
+            Game.ShortenDescription();
+            Post.ShortenBody();
         }
     }
 }

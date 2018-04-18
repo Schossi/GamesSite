@@ -12,8 +12,8 @@ body {
 
 .taggedList {
     display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas: "content tags";
+    grid-template-columns: 1fr 1fr auto;
+    grid-template-areas: "content content tags";
     grid-gap: 50px;
 }
 
@@ -54,4 +54,18 @@ body {
 }
 .titleTwitter {
     grid-area: twitter;
+}
+
+
+.gameGrid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "image description";
+    grid-gap: 5px;
+}
+.gameImage{
+    grid-area: image;
+}
+.gameDescription{
+    grid-area: description;
 }

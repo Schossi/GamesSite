@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace GamesSiteMain.Services
 {
@@ -33,6 +34,8 @@ namespace GamesSiteMain.Services
         
         public async Task SeedAsync()
         {
+            await _dbContext.Database.MigrateAsync();
+
             ApplicationUser adminUser = await _userManager.FindByNameAsync(AdminName);
             if (adminUser == null)
             {

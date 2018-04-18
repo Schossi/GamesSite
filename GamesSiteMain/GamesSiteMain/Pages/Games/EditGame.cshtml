@@ -14,7 +14,7 @@
 <h2>@ViewData["Title"]</h2>
 
 <div>
-    <form asp-route="./Games" method="post">
+    <form asp-route="./Games" method="post" enctype="multipart/form-data">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="Game.Name"></label>
@@ -27,6 +27,11 @@
             <span asp-validation-for="Game.Description" class="text-danger"></span>
         </div>
         <div class="form-group">
+            <label asp-for="Game.PlayLink"></label>
+            <input asp-for="Game.PlayLink" class="form-control" />
+            <span asp-validation-for="Game.PlayLink" class="text-danger"></span>
+        </div>
+        <div class="form-group">
             <label asp-for="Game.PublishDate"></label>
             <input asp-for="Game.PublishDate" class="form-control" />
             <span asp-validation-for="Game.PublishDate" class="text-danger"></span>
@@ -36,14 +41,19 @@
             <input asp-for="Game.Tags" class="form-control" />
             <span asp-validation-for="Game.Tags" class="text-danger"></span>
         </div>
-        @if (Model.IsNew)
+        <div class="form-group">
+            <label asp-for="Game.Image"></label>
+            <input asp-for="Game.Image" type="file" class="form-control" />
+        </div>
+
+            @if (Model.IsNew)
         {
             <button type="submit" class="btn btn-default">Add</button>
-        }
-        else
-        {
-            <button type="submit" class="btn btn-default">Save</button>
-        }
+    }
+    else
+    {
+        <button type="submit" class="btn btn-default">Save</button>
+}
     </form>
 </div>
 

@@ -6,7 +6,7 @@
 
 <article>
     <h2>@Model.Post.Title</h2>
-    <p>@Model.Post.Body</p>
+    <p>@Html.Raw(Model.Post.Body)</p>
 </article>
 
 <a asp-page="./posts">Back</a>

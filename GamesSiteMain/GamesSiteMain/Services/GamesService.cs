@@ -50,7 +50,8 @@ namespace GamesSiteMain.Services
         }
         
         public Game GetGame(int id) => _dbContext.Games.Where(g => g.Id == id).Include(g => g.Tags).FirstOrDefault();
-
+        public Task<Game> GetGameAsync(int id) => _dbContext.Games.Where(g => g.Id == id).Include(g => g.Tags).FirstOrDefaultAsync();
+ 
         public void DeleteGame(int id)
         {
             Game game = GetGame(id);

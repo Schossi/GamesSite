@@ -37,6 +37,11 @@ namespace GamesSiteMain.Data
                 Tags.Add(new PostTag(this, tag));
             }
         }
+
+        public void ShortenBody()
+        {
+            Body = Body.GetShortened();
+        }
     }
 
     public class EditPost

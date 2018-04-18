@@ -12,6 +12,8 @@ namespace GamesSiteMain.Pages.Games
 {
     public class GamesModel : TaggedPageBase
     {
+        public string RootPath = "../";
+
         public List<Game> Games { get; set; }
         
         private GamesService _gamesService;
@@ -32,6 +34,9 @@ namespace GamesSiteMain.Pages.Games
                 Games = _gamesService.GetGames();
             else
                 Games = _gamesService.GetGames(tags);
+
+            Games.ForEach(g => g.ShortenDescription());
+            Games.ForEach(g => g.ImagePath = $"../../games/{g.Id}.png");
         }
     }
 }
