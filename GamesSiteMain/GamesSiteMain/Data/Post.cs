@@ -32,9 +32,12 @@ namespace GamesSiteMain.Data
             PublishDate = editPost.PublishDate;
 
             Tags.Clear();
-            foreach (string tag in editPost.Tags.Split(' '))
+            if (editPost.Tags != null)
             {
-                Tags.Add(new PostTag(this, tag));
+                foreach (string tag in editPost.Tags.Split(' '))
+                {
+                    Tags.Add(new PostTag(this, tag));
+                }
             }
         }
 
@@ -51,6 +54,7 @@ namespace GamesSiteMain.Data
         public string Title { get; set; }
         [Required]
         public string Body { get; set; }
+        [DataType(DataType.Date)]
         public DateTime PublishDate { get; set; }
 
         public string Tags { get; set; }

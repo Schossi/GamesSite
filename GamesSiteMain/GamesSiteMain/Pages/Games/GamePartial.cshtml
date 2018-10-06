@@ -4,13 +4,13 @@
     <h1>@Model.Name</h1>
     <div class="gameGrid">
         <div class="gameImage">
-            <img class="gameImage" src="@Model.ImagePath" />
+            <img class="gameImage" src="@Model.ImagePath"/>
         </div>
         <div class="gameDescription">
             <p class="gameDescription">@Html.Raw(Model.Description)</p>
         </div>
     </div>
-    <small>@Model.PublishDate</small><br />
+    <small>@Model.PublishDate.ToShortDateString()</small><br />
     <small>@Model.TagsText</small><br />
 
     @if (String.IsNullOrWhiteSpace(Model.PlayLink) == false)

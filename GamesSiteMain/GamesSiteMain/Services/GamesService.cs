@@ -46,6 +46,9 @@ namespace GamesSiteMain.Services
             game.Update(editGame);
             
             _dbContext.SaveChanges();
+
+            editGame.Id = game.Id;
+
             return true;
         }
         
@@ -59,12 +62,12 @@ namespace GamesSiteMain.Services
             _dbContext.SaveChanges();
         }
 
-        public Game GetLatestGame() => _dbContext.Games.OrderBy(g => g.PublishDate).FirstOrDefault();
+        public Game GetLatestGame() => _dbContext.Games.OrderByDescending(g => g.PublishDate).FirstOrDefault();
 
-        public List<Game> GetGames() => _dbContext.Games.OrderBy(g => g.PublishDate).Include(g => g.Tags).ToList();
+        public List<Game> GetGames() => _dbContext.Games.OrderByDescending(g => g.PublishDate).Include(g => g.Tags).ToList();
         public List<Game> GetGames(List<string> tags)
         {
-            return _dbContext.Games.Where(g => tags.All(t => g.Tags.Any(gt => gt.Tag == t))).OrderBy(g => g.PublishDate)
+            return _dbContext.Games.Where(g => tags.All(t => g.Tags.Any(gt => gt.Tag == t))).OrderByDescending(g => g.PublishDate)
                 .Include(g => g.Tags).ToList();
         }
 

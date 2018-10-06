@@ -42,17 +42,17 @@ namespace GamesSiteMain.Pages.Games
             if (!ModelState.IsValid)
                 return Page();
 
+            _gamesService.SaveGame(Game, id);
+
             if (Game.Image?.Length > 0)
             {
-                var path = Path.Combine(_hostingEnvironment.WebRootPath, "games", id + ".png"); 
+                var path = Path.Combine(_hostingEnvironment.WebRootPath, "games", Game.Id + ".png"); 
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
                     await Game.Image.CopyToAsync(fileStream);
                 }
             }
-
-            _gamesService.SaveGame(Game, id);
-
+            
             return RedirectToPage("./Games");
         }
     }

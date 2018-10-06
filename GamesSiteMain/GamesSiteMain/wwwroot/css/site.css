@@ -64,6 +64,7 @@ body {
     grid-gap: 5px;
 }
 .gameImage{
+    width: 240px;
     grid-area: image;
 }
 .gameDescription{

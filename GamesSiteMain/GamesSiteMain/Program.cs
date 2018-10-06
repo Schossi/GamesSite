@@ -17,11 +17,14 @@ namespace GamesSiteMain
     {
         public static void Main(string[] args)
         {
-            IWebHost host = BuildWebHost(args);
-                        
+            IWebHost host = BuildWebHost(args);            
+
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
+
+                services.GetRequiredService<ILogger<Program>>().LogInformation("Seeding database...");
+
                 try
                 {
                     services.GetRequiredService<IDBSeeder>().SeedAsync().GetAwaiter().GetResult();

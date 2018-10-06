@@ -27,11 +27,18 @@ namespace GamesSiteMain.Pages
         public void OnGet()
         {
             Game = _gamesService.GetLatestGame();
-            Game.ImagePath = $"../games/{Game.Id}.png";
             Post = _postsService.GetLatestPost();
 
-            Game.ShortenDescription();
-            Post.ShortenBody();
+            if (Game != null)
+            {
+                Game.ImagePath = $"../games/{Game.Id}.png";
+                Game.ShortenDescription();
+            }
+
+            if (Post != null)
+            {
+                Post.ShortenBody();
+            }
         }
     }
 }

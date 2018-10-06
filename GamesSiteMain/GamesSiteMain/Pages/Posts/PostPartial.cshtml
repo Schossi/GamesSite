@@ -3,7 +3,7 @@
 <arcticle>
     <h1>@Model.Title</h1>
     <p>@Html.Raw(Model.Body)</p>
-    <small>@Model.PublishDate</small><br />
+    <small>@Model.PublishDate.ToShortDateString()</small><br />
     <small>@Model.TagsText</small><br />
 
     @if (@ViewData["Title"].ToString() == "Posts")

@@ -57,7 +57,7 @@ namespace GamesSiteMain.Data
 
     public class EditGame
     {
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -69,7 +69,7 @@ namespace GamesSiteMain.Data
         public string Description { get; set; }
         [DataType(DataType.Url)]
         public string PlayLink { get; set; }
-
+        [DataType(DataType.Date)]
         public DateTime PublishDate { get; set; }
         public string Tags { get; set; }
 
