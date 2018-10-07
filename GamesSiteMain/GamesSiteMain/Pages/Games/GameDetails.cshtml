@@ -6,7 +6,14 @@
 
 <article>
     <h2>@Model.Game.Name</h2>
+    @if (String.IsNullOrWhiteSpace(Model.Game.PlayLink) == false)
+    {
+        <a href="@Model.Game.PlayLink" target="_blank">Play</a><br />
+    }
+    <img src="@Model.Game.ImagePath" />
     <p>@Html.Raw(Model.Game.Description)</p>
+    <small>@Model.Game.PublishDate.ToShortDateString()</small><br />
+    <small>@Model.Game.TagsText</small><br />
 </article>
 
-@Html.Partial("../CommentsPartial",Model)
+@Html.Partial("~/Pages/CommentsPartial.cshtml", Model)

@@ -62,15 +62,15 @@ namespace GamesSiteMain.Services
             _dbContext.SaveChanges();
         }
 
-        public Game GetLatestGame() => _dbContext.Games.OrderByDescending(g => g.PublishDate).FirstOrDefault();
+        public async Task<Game> GetLatestGame() => await _dbContext.Games.OrderByDescending(g => g.PublishDate).FirstOrDefaultAsync();
 
-        public List<Game> GetGames() => _dbContext.Games.OrderByDescending(g => g.PublishDate).Include(g => g.Tags).ToList();
-        public List<Game> GetGames(List<string> tags)
+        public async Task<List<Game>> GetGames() => await _dbContext.Games.OrderByDescending(g => g.PublishDate).Include(g => g.Tags).ToListAsync();
+        public async Task<List<Game>> GetGames(List<string> tags)
         {
-            return _dbContext.Games.Where(g => tags.All(t => g.Tags.Any(gt => gt.Tag == t))).OrderByDescending(g => g.PublishDate)
-                .Include(g => g.Tags).ToList();
+            return await _dbContext.Games.Where(g => tags.All(t => g.Tags.Any(gt => gt.Tag == t))).OrderByDescending(g => g.PublishDate)
+                .Include(g => g.Tags).ToListAsync();
         }
 
-        public List<string> GetTags() => _dbContext.GameTags.Select(t => t.Tag).Distinct().ToList();
+        public async Task<List<string>> GetTags() => await _dbContext.GameTags.Select(t => t.Tag).Distinct().ToListAsync();
     }
 }

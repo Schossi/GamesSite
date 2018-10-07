@@ -33,6 +33,7 @@ namespace GamesSiteMain.Pages.Games
             base.OnGet(id);
 
             Game = _gamesService.GetGame(id);
+            Game.ImagePath = $"../../games/{Game.Id}.png";
         }
     }
 }

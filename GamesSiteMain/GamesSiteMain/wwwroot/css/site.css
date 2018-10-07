@@ -21,7 +21,7 @@ body {
     grid-area: tags;
 }
 
-.taggedListEntry {
+.taggedListEntries {
     grid-area: content;
 }
 .listEntry {
@@ -35,6 +35,10 @@ body {
         grid-template-areas: "game" "post" "twitter";
         grid-gap: 50px;
     }
+    .gameImage {
+        width: 90px;
+        grid-area: image;
+    }
 }
 @media (min-width: 500px) {
     .titleGrid {
@@ -42,6 +46,10 @@ body {
         grid-template-columns: 1fr 1fr;
         grid-template-areas: "game twitter" "post twitter";
         grid-gap: 50px;
+    }
+    .gameImage {
+        width: 240px;
+        grid-area: image;
     }
 }
 
@@ -62,10 +70,6 @@ body {
     grid-template-columns: auto 1fr;
     grid-template-areas: "image description";
     grid-gap: 5px;
-}
-.gameImage{
-    width: 240px;
-    grid-area: image;
 }
 .gameDescription{
     grid-area: description;

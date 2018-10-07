@@ -7,8 +7,10 @@
 <article>
     <h2>@Model.Post.Title</h2>
     <p>@Html.Raw(Model.Post.Body)</p>
+    <small>@Model.Post.PublishDate.ToShortDateString()</small><br />
+    <small>@Model.Post.TagsText</small><br />
 </article>
 
 <a asp-page="./posts">Back</a>
 
-@Html.Partial("../CommentsPartial", Model)
+@Html.Partial("~/Pages/CommentsPartial.cshtml", Model)

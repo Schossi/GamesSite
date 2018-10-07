@@ -19,9 +19,9 @@ namespace GamesSiteMain.Pages.BasePageModels
 
         public TaggedPageBase() { }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Tags = getTags();
+            Tags = await getTags();
 
             if (SelectedTags == null)
                 SelectedTags = string.Empty;
@@ -29,7 +29,7 @@ namespace GamesSiteMain.Pages.BasePageModels
 
             TagStates = Tags.Select(t => splitSelectedTags.Contains(t)).ToList();
 
-            fillEntries(splitSelectedTags.ToList());
+            await fillEntries(splitSelectedTags.ToList());
         }
         
         public IActionResult OnPost()
@@ -47,7 +47,7 @@ namespace GamesSiteMain.Pages.BasePageModels
             return RedirectToPage();
         }
 
-        protected abstract List<string> getTags();
-        protected abstract void fillEntries(List<string> tags);
+        protected abstract Task<List<string>> getTags();
+        protected abstract Task fillEntries(List<string> tags);
     }
 }

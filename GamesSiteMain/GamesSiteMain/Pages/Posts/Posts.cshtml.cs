@@ -21,17 +21,17 @@ namespace GamesSiteMain.Pages.Posts
             _postsService = postsService;
         }
 
-        protected override List<string> getTags()
+        protected override async Task<List<string>> getTags()
         {
-            return _postsService.GetTags();
+            return await _postsService.GetTags();
         }
 
-        protected override void fillEntries(List<string> tags)
+        protected override async Task fillEntries(List<string> tags)
         {
             if (tags.Count == 0)
-                Posts = _postsService.GetPosts();
+                Posts = await _postsService.GetPosts();
             else
-                Posts = _postsService.GetPosts(tags);
+                Posts = await _postsService.GetPosts(tags);
 
             Posts.ForEach(p => p.ShortenBody());
         }

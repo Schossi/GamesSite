@@ -23,17 +23,17 @@ namespace GamesSiteMain.Pages.Games
             _gamesService = gamesService;
         }
         
-        protected override List<string> getTags()
+        protected override async Task<List<string>> getTags()
         {
-            return _gamesService.GetTags();
+            return await _gamesService.GetTags();
         }
 
-        protected override void fillEntries(List<string> tags)
+        protected override async Task fillEntries(List<string> tags)
         {
             if (tags.Count == 0)
-                Games = _gamesService.GetGames();
+                Games = await _gamesService.GetGames();
             else
-                Games = _gamesService.GetGames(tags);
+                Games = await _gamesService.GetGames(tags);
 
             Games.ForEach(g => g.ShortenDescription());
             Games.ForEach(g => g.ImagePath = $"../../games/{g.Id}.png");

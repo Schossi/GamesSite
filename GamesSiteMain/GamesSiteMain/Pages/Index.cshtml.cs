@@ -24,10 +24,10 @@ namespace GamesSiteMain.Pages
             _postsService = postsService;
         }
 
-        public void OnGet()
+        public async Task OnGet()
         {
-            Game = _gamesService.GetLatestGame();
-            Post = _postsService.GetLatestPost();
+            Game = await _gamesService.GetLatestGame();
+            Post = await _postsService.GetLatestPost();
 
             if (Game != null)
             {
